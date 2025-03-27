@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Listado de Alumnos{% endblock %}
+{% block content %}
+<h1>Alumnos que se van a certificar</h1>
+<a href="{{ url_for('agregar') }}" class="btn btn-success mb-3">Agregar Alumno</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Carrera</th>
+            <th>Certificación</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for alumno in alumnos %}
+        <tr>
+            <td>{{ alumno.nombre }}</td>
+            <td>{{ alumno.carrera }}</td>
+            <td>{{ alumno.certificacion }}</td>
+            <td>
+                <a href="{{ url_for('eliminar', id=alumno.id) }}" class="btn btn-danger btn-sm">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,8 @@
+# Directory Structure
+include/
+lib/
+scripts/
+bin/
+.env
+pyvenv.cfg
+lib64
