@@ -1,28 +1,37 @@
 {% extends "base.html" %}
-{% block title %}Listado de Alumnos{% endblock %}
+{% block title %}Inicio{% endblock %}
 {% block content %}
-<h1>Alumnos que se van a certificar</h1>
-<a href="{{ url_for('agregar') }}" class="btn btn-success mb-3">Agregar Alumno</a>
+<a href="{{ url_for('add_student') }}" class="btn btn-success mb-3">Agregar Alumno</a>
+<a href="{{ url_for('add_certificacion') }}" class="btn btn-primary mb-3">Agregar Certificación</a>
+<a href="{{ url_for('asignar_certificacion') }}" class="btn btn-warning mb-3">Asignar Certificación</a>
+<a href="{{ url_for('ver_certificaciones') }}" class="btn btn-secondary mb-3">Ver Certificaciones</a>
+
+<hr>
+
+<h3>Relaciones Alumno - Certificación</h3>
 <table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Carrera</th>
-            <th>Certificación</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for alumno in alumnos %}
-        <tr>
-            <td>{{ alumno.nombre }}</td>
-            <td>{{ alumno.carrera }}</td>
-            <td>{{ alumno.certificacion }}</td>
-            <td>
-                <a href="{{ url_for('eliminar', id=alumno.id) }}" class="btn btn-danger btn-sm">Eliminar</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
+  <thead>
+    <tr>
+      <th>Alumno</th>
+      <th>Certificación</th>
+      <th>Calificación</th>
+      <th>Acción</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for r in relaciones %}
+    <tr>
+      <td>{{ r.alumno.nombre }}</td>
+      <td>{{ r.certificacion.nombre }}</td>
+      <td>{{ r.calificacion }}</td>
+      <td>
+        <a href="{{ url_for('asignar_certificacion', alumno=alumno, certificacion=certificacion) }}" class="btn btn-sm btn-warning">Editar</a>
+        <form action="{{ url_for('eliminar_relacion', alumno_id=r.alumno_id, certificacion_id=r.certificacion_id) }}" method="POST" style="display:inline;">
+            <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
 </table>
 {% endblock %}

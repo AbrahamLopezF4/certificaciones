@@ -1,13 +1,13 @@
 {% extends "base.html" %}
-{% block title %}Agregar Alumno{% endblock %}
+{% block title %}Agregar Certificación{% endblock %}
 {% block content %}
-<h2>Agregar Alumno</h2>
+<h2>Agregar Certificación</h2>
 <form method="POST">
   <div class="mb-3">
     <label class="form-label">Nombre</label>
     <input type="text" name="nombre" class="form-control" required>
   </div>
-  <button type="submit" class="btn btn-success">Guardar</button>
+  <button type="submit" class="btn btn-primary">Guardar</button>
 </form>
 <a href="{{ url_for('index') }}" class="btn btn-secondary mt-2">Volver</a>
 {% endblock %}

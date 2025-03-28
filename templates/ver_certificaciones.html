@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Certificaciones{% endblock %}
+{% block content %}
+<h2>Certificaciones Disponibles</h2>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for c in certificaciones %}
+    <tr>
+      <td>{{ c.id }}</td>
+      <td>{{ c.nombre }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<a href="{{ url_for('index') }}" class="btn btn-secondary">Volver</a>
+{% endblock %}
